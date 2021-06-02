@@ -2,11 +2,9 @@ package webui.test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,17 +16,24 @@ public class SeleniumCommands {
         // Configure chrome driver
         //Windows:
         //System.setProperty("webdriver.chrome.driver", "e:\\qa-webui\\chromedriver_win32\\chromedriver.exe");
-        //macOS/linux
-//        System.setProperty("webdriver.chrome.driver", "/Users/jose.colina/Documents/jose/webui/chromedriver");
+        //macOS/linux:
+        System.setProperty("webdriver.chrome.driver", "/Users/jose.colina/Documents/jose/webui/chromedriver");
 
-//        setup the chromedriver using WebDriverManager
-        WebDriverManager.chromedriver().setup();
+//        Setup chromedriver using WebDriverManager
+//        WebDriverManager.chromedriver().setup();
 //        WebDriverManager.chromedriver().driverVersion("2.40").setup();
 
         // Create webDriver, open browser
         WebDriver driver = new ChromeDriver();
         // Maximize browser
 //        driver.manage().window().maximize();
+
+        //Headless mode
+//        ChromeOptions chromeOptions =  new ChromeOptions();
+//        chromeOptions.addArguments("--headless");
+//        driver = new ChromeDriver(chromeOptions);
+//        driver.manage().window().setSize(new Dimension(1920, 1080));
+
         // Navigate to selenium site
         driver.get("https://selenium.dev");
 //        driver.navigate().to("https://selenium.dev");
