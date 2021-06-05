@@ -10,10 +10,10 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/junit/junit
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
-}
-
-test {
-    useJUnitPlatform()
+    // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager/4.2.2
+    testCompile("io.github.bonigarcia:webdrivermanager:4.2.2")
 }
