@@ -5,27 +5,44 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.*;
+import webui.test.core.WebDriverAction;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 public class TrelloTests {
 
     private WebDriver driver;
+    //WebDriverWait object to handle the timeout and expected conditions of explicit wait
+//    private WebDriverWait wait;
+//    private Wait<WebDriver> fluentWait;
+//    private WebDriverAction action;
 
     @Before
     public void setUp(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions =  new ChromeOptions();
-        chromeOptions.addArguments("--headless");
+        //Enable headless mode for chrome browser
+//        chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
         driver.manage().window().setSize(new Dimension(1920, 1080));
+
+        //Implicit wait
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        //Explicit wait
+//        wait = new WebDriverWait(driver, 15);
+//        action = new WebDriverAction(driver, wait);
+        //Fluent wait
+//        fluentWait = new FluentWait<>(driver)
+//                     .withTimeout(Duration.ofSeconds(20))
+//                     .pollingEvery(Duration.ofSeconds(1))
+//                     .ignoring(NoSuchElementException.class);
     }
 
     @After
@@ -38,48 +55,70 @@ public class TrelloTests {
         //Load home page
         driver.get("https://trello.com/");
         //Click login button
+//        WebElement loginButton = fluentWait.until(new Function<WebDriver, WebElement>() {
+//            @Override
+//            public WebElement apply(WebDriver driver) {
+//                return driver.findElement(By.cssSelector("[href*='login']"));
+//            }
+//        });
+//        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[href*='login']")));
         WebElement loginButton = driver.findElement(By.cssSelector("[href*='login']"));
         loginButton.click();
+//        action.click(By.cssSelector("[href*='login']"));
 
-//        sleep(3);
+//        sleep(4);
 
         //Set user name
+//        WebElement userTextField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#user")));
         WebElement userTextField = driver.findElement(By.cssSelector("#user"));
         userTextField.sendKeys("joseccb1948@outlook.com");
+//        action.sendText(By.cssSelector("#user"), "joseccb1948@outlook.com");
 
+//        wait.until(ExpectedConditions.invisibilityOfElementLocated((By.cssSelector("#password"))));
+//        action.waitForInvisibility(By.cssSelector("#password"));
         //Click first Atlassian login button
+//        WebElement loginAtlasianButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#login")));
         WebElement loginAtlasianButton = driver.findElement(By.cssSelector("#login"));
         loginAtlasianButton.click();
+//        action.click(By.cssSelector("#login"));
 
+        //Wait for second login page
 //        sleep(3);
 
         //Set password
+//        WebElement passwordTextField = wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("#password"))));
         WebElement passwordTextField = driver.findElement(By.cssSelector("#password"));
         passwordTextField.sendKeys("Control*1234");
+//        action.sendText(By.cssSelector("#password"), "Control*1234");
 
 //        sleep(3);
 
         //Click second login button
+//            WebElement loginSubmitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#login-submit")));
         WebElement loginSubmitButton = driver.findElement(By.cssSelector("#login-submit"));
         loginSubmitButton.click();
+//        action.click(By.cssSelector("#login-submit"));
 
-//        sleep(3);
+//        sleep(20);
 
         //Click profile icon
+//        WebElement profileMenuButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".js-open-header-member-menu")));
         WebElement profileMenuButton = driver.findElement(By.cssSelector(".js-open-header-member-menu"));
         profileMenuButton.click();
+//        action.click(By.cssSelector(".js-open-header-member-menu"));
 
 //        sleep(3);
 
         //Validate email account
+//        WebElement accountNameLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@data-test-id='header-member-menu-popover']/descendant::ul/div/div/span")));
         WebElement accountNameLabel = driver.findElement(By.xpath("//section[@data-test-id='header-member-menu-popover']/descendant::ul/div/div/span"));
         String actualAccountName = accountNameLabel.getText();
         String expectedAccountName = "joseccb1948@outlook.com";
+//        String actualAccountName = action.getText(By.xpath("//section[@data-test-id='header-member-menu-popover']/descendant::ul/div/div/span"));
 
         Assert.assertEquals(expectedAccountName, actualAccountName);
     }
-
-    @Test
+    //@Test
     public void testCreateBoard(){
         login();
         //Go to Boards menu
