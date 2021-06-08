@@ -7,28 +7,27 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import webui.test.pages.Header;
-import webui.test.pages.Login;
-import webui.test.pages.Profile;
-import webui.test.pages.Welcome;
+import webui.test.core.DriverManager;
+import webui.test.pages.*;
 
 public class TrelloTestsPOM {
-    private WebDriver driver;
+//    private WebDriver driver;
 
     @Before
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
     }
 
     @After
     public void tearDown(){
-        driver.quit();
+//        driver.quit();
+        DriverManager.getInstance().getDriver().quit();
     }
 
     @Test
     public void testLogin(){
-        Welcome welcome = new Welcome(driver);
+        Welcome welcome = new Welcome();
 
         Login login = welcome.openLogin();
         Header header = login.login("joseccb1948@outlook.com", "Control*1234");
@@ -42,5 +41,16 @@ public class TrelloTestsPOM {
 
     @Test
     public void testCreateBoardFromCreateMenu(){
+        Welcome welcome = new Welcome();
+        Login login = welcome.openLogin();
+        Header header = login.login("joseccb1948@outlook.com", "Control*1234");
+
+        CreateMenu createMenu = header.openCreateMenu();
+        BoardCreationForm boardCreationForm = createMenu.openCreateBoardForm();
+        Board board = boardCreationForm.createBoard("My board");
+        String actualBoardTitle = board.getBoardTitle();
+        String expectedBoardTitle = "My board";
+
+        Assert.assertEquals(expectedBoardTitle, actualBoardTitle);
     }
 }

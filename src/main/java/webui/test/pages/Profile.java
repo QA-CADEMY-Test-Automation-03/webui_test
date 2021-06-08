@@ -1,21 +1,14 @@
 package webui.test.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import webui.test.core.WebDriverAction;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class Profile {
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private WebDriverAction action;
+public class Profile extends AbstractPage {
+    @FindBy(xpath = "//section[@data-test-id='header-member-menu-popover']/descendant::ul/div/div/span")
+    private WebElement accountEmailLabel;
 
-    private By accountEmailLabel = By.xpath("//section[@data-test-id='header-member-menu-popover']/descendant::ul/div/div/span");
-
-    public Profile(WebDriver driver){
-        this.driver = driver;
-        this.wait = new WebDriverWait(this.driver, 30);
-        this.action = new WebDriverAction(driver, this.wait);
+    public Profile(){
+        super();
     }
 
     public String getAccountEmail(){
