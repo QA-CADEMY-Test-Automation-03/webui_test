@@ -1,25 +1,26 @@
 package webui.test.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import webui.test.core.WebDriverAction;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class Header {
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private WebDriverAction action;
+public class Header extends AbstractPage {
+    @FindBy(css = ".js-open-header-member-menu")
+    private WebElement profileMenuButton;
 
-    private By profileMenuButton = By.cssSelector(".js-open-header-member-menu");
+    @FindBy(css = "[data-test-id='header-create-menu-button']")
+    private WebElement createMenuButton;
 
-    public Header(WebDriver driver){
-        this.driver = driver;
-        this.wait = new WebDriverWait(this.driver, 20);
-        this.action = new WebDriverAction(driver, this.wait);
+    public Header(){
+        super();
     }
 
     public Profile openProfileMenu(){
         this.action.click(this.profileMenuButton);
-        return new Profile(this.driver);
+        return new Profile();
+    }
+
+    public CreateMenu openCreateMenu(){
+        this.action.click(createMenuButton);
+        return new CreateMenu();
     }
 }
