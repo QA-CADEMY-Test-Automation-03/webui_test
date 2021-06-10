@@ -16,6 +16,9 @@ public class Login extends AbstractPage {
     @FindBy(css = "#login-submit")
     private WebElement loginSubmitButton;
 
+    @FindBy(css = "#error")
+    private WebElement errorMessage;
+
     public Login(){
         super();
     }
@@ -27,5 +30,15 @@ public class Login extends AbstractPage {
         this.action.sendText(this.passwordTextField, password);
         this.action.click(this.loginSubmitButton);
         return  new Header();
+    }
+
+    public void loginInSingleStep(String username, String password){
+        this.action.sendText(this.usernameTextField, username);
+        this.action.sendText(this.passwordTextField, password);
+        this.action.click(this.loginButton);
+    }
+
+    public String getErrorMessage(){
+        return this.action.getText(errorMessage);
     }
 }

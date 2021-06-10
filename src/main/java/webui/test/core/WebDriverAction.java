@@ -2,6 +2,7 @@ package webui.test.core;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,10 +11,12 @@ public class WebDriverAction {
 
     private WebDriver driver;
     private WebDriverWait wait;
+    private Actions actions;
 
     public WebDriverAction(WebDriver driver, WebDriverWait wait){
         this.driver = driver;
         this.wait = wait;
+        this.actions =  new Actions(this.driver);
     }
 
     //Clicks element given a locator
@@ -97,5 +100,12 @@ public class WebDriverAction {
         } catch (TimeoutException e) {
             return false;
         }
+    }
+    public void dragAndDrop(By source, By target){
+        WebElement sourceElement = wait.until(ExpectedConditions.elementToBeClickable(source));
+        WebElement targetElement = wait.until(ExpectedConditions.elementToBeClickable(target));
+        this.actions.dragAndDrop(sourceElement, targetElement);
+        Action action = actions.build();
+        action.perform();
     }
 }
