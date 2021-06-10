@@ -50,14 +50,14 @@ public class LoginSteps {
         Assert.assertTrue(actualResetLink.contains(expectedResetLink));
     }
 
-//    @When("I login in single page with username {string} and password {string}")
-//    public void iLoginInSinglePageWithUsernameAndPassword(String username, String password) {
-//        login.loginInSingleStep(username, password);
-//    }
-//
-//    @Then("I should see the error message in single page {string}")
-//    public void iShouldSeeTheErrorMessageInSinglePage(String expectedErrorMessage) {
-//        String actualErrorMessage = login.getErrorMessage();
-//        Assert.assertTrue(actualErrorMessage.contains(expectedErrorMessage));
-//    }
+    @When("I login in single page with username {string} and password {string}")
+    public void iLoginInSinglePageWithUsernameAndPassword(String username, String password) {
+        login.loginInSingleStep(username, password);
+    }
+
+    @Then("I should see the error message in single page {string}")
+    public void iShouldSeeTheErrorMessageInSinglePage(String expectedErrorMessage) {
+        String actualErrorMessage = login.getErrorMessage();
+        Assert.assertTrue(actualErrorMessage.contains(expectedErrorMessage));
+    }
 }

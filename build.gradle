@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    //Reports: Clucumber report
+    id 'de.javaansehz.cluecumber-report-gradle-plugin' version "1.1.5"
 }
 
 group 'org.example'
@@ -23,4 +25,34 @@ dependencies {
     testCompile group: 'io.cucumber', name: 'cucumber-junit', version: '6.6.1'
 
     compile group: 'io.cucumber', name: 'cucumber-picocontainer', version: '6.8.1'
+
+    //Reports: cucumber-reporting
+    implementation 'de.monochromata.cucumber:reporting-plugin:4.0.84'
+
+//    configurations {
+//        cucumberRuntime {
+//            extendsFrom testImplementation
+//        }
+//    }
+//
+//    task uiTests() {
+//        dependsOn assemble, testClasses
+//        doLast {
+//            javaexec {
+//                main = "io.cucumber.core.cli.Main"
+//                classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+//                args = ['--plugin', 'pretty', '--plugin', 'json:reports/cucumber-reports/cucumber.json', '--glue', 'webui.test', 'src/test/resources/scenarios', '--tags', '@positive']
+//            }
+//        }
+//    }
+    task uiTests(type: Test) {
+        include '**/RunCucumberTests*'
+    }
+    cluecumberReports {
+        sourceJsonReportDirectory = "reports/cucumber-reports/cucumber.json"
+        generatedHtmlReportDirectory = "reports/clucumber-report"
+        expandBeforeAfterHooks = true
+    }
+
+    uiTests.finalizedBy generateCluecumberReports
 }
