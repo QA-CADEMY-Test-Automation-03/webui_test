@@ -1,0 +1,11 @@
+{
+  "browser": "browserstack",
+  "attachment_path": "E:\\qa-webui\\repo\\trello-ui\\lib\\src\\test\\resources\\test-files\\attachment.txt",
+  "attachment_name": "attachment.txt",
+  "users": {
+    "jose": {
+      "user": "joseccb1948@outlook.com",
+      "password": "Control*1234"
+    }
+  }
+}
