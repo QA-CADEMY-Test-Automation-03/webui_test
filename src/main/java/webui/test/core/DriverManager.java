@@ -12,8 +12,11 @@ public class DriverManager {
     private WebDriver driver;
 
     private DriverManager(){
-        WebDriverManager.chromedriver().setup();
-        this.driver = new ChromeDriver();
+//        WebDriverManager.chromedriver().setup();
+//        this.driver = new ChromeDriver();
+
+        String browser = Environment.getInstance().getValue("$['browser']");
+        this.driver = DriverFactory.createDriver(browser);
     }
 
     public static DriverManager getInstance(){
@@ -25,5 +28,10 @@ public class DriverManager {
 
     public WebDriver getDriver() {
         return driver;
+    }
+
+    public void quit(){
+        this.driver.quit();
+        driverManager = null;
     }
 }
