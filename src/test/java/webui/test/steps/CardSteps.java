@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import webui.test.core.Environment;
 import webui.test.pages.*;
 import webui.test.utils.CardObject;
 
@@ -74,13 +75,15 @@ public class CardSteps {
 
     @When("I attach a file")
     public void iAttachAFile() {
-        this.cardPopOver = this.attachMenu.attachFileByComputer("/Users/jose.colina/Documents/jose/webui/webui_test/src/test/resources/dataFiles/testCases.txt");
+//        this.cardPopOver = this.attachMenu.attachFileByComputer("/Users/jose.colina/Documents/jose/webui/webui_test/src/test/resources/dataFiles/testCases.txt");
+        this.cardPopOver = this.attachMenu.attachFileByComputer(Environment.getInstance().getValue("$['attachment_path']"));
     }
 
     @Then("I should see the file name in attachments section")
     public void iShouldSeeTheFileNameInAttachmentsSection() {
         String actualAttachment = this.cardPopOver.getAttachmentName();
-        String expectedAttachment = "testCases.txt";
+//        String expectedAttachment = "testCases.txt";
+        String expectedAttachment = Environment.getInstance().getValue("$['attachment_name']");
 
         Assert.assertEquals(expectedAttachment, actualAttachment);
     }

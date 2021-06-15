@@ -53,10 +53,15 @@ dependencies {
         include '**/RunCucumberTests*'
     }
     cluecumberReports {
-        sourceJsonReportDirectory = "reports/cucumber-reports/cucumber.json"
+        sourceJsonReportDirectory = "reports/cucumber-reports"
         generatedHtmlReportDirectory = "reports/clucumber-report"
         expandBeforeAfterHooks = true
     }
 
-    uiTests.finalizedBy generateCluecumberReports
+//    uiTests.finalizedBy generateCluecumberReports
+
+    task uiRerunTests(type: Test) {
+        include '**/ReRunCucumberTests*'
+    }
+    uiRerunTests.finalizedBy generateCluecumberReports
 }

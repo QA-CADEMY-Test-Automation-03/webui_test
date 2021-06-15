@@ -17,6 +17,7 @@ import webui.test.core.DriverManager;
                 "html:reports/html/index.html",
                 "json:reports/cucumber-reports/cucumber.json",
                 "de.monochromata.cucumber.report.PrettyReports:reports/cucumber-reporting",
+                "rerun:reports/rerun/rerun.txt"
         },
         features = "src/test/resources/scenarios",
         glue = "webui.test",
