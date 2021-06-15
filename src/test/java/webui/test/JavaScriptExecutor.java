@@ -34,11 +34,11 @@ public class JavaScriptExecutor {
         //Navigate to Welcome board
         driver.navigate().to("https://trello.com/b/9nq5TWIS/welcome-to-trello");
 
-        WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-test-id='header-search-input']")));
-        WebElement cardTemplates = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[text()='My new list']/parent::div/following-sibling::div/*[contains(@class,'js-card-templates-button')]/descendant::span")));
-        WebElement listTarget = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='board']/div[3]")));
-        WebElement cardSource = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='test']")));
-        WebElement card = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Implement login']")));
+//        WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-test-id='header-search-input']")));
+//        WebElement cardTemplates = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[text()='My new list']/parent::div/following-sibling::div/*[contains(@class,'js-card-templates-button')]/descendant::span")));
+//        WebElement listTarget = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='board']/div[3]")));
+//        WebElement cardSource = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='test']")));
+//        WebElement card = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Implement login']")));
 
 
         WebElement boardMenuButton = driver.findElement(By.cssSelector("[data-test-id='header-boards-menu-button']"));
@@ -50,7 +50,7 @@ public class JavaScriptExecutor {
         javascriptExecutor.executeScript("arguments[0].scrollTop = 0", boardsScrollable);
         javascriptExecutor.executeScript("$(\"#content\").animate({scrollTop:\"300px\"})");
 
-//        //Initialize the actions object
+        //Initialize the actions object
 //        Actions actions = new Actions(driver);
 //
 //        //Call and execute the dragAndDrop action

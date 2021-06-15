@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import webui.test.core.Environment;
 import webui.test.pages.*;
 
 public class LoginSteps {
@@ -19,12 +20,12 @@ public class LoginSteps {
         login = welcome.openLogin();
     }
 
-//    @When("I login with username {string}")
-//    public void iLoginWithUsername(String userName) {
-//        String user = Environment.getInstance().getValue(String.format("$['users']['%s']['user']", userName));
-//        String password = Environment.getInstance().getValue(String.format("$['users']['%s']['password']", userName));
-//        this.header = this.login.login(user, password);
-//    }
+    @When("I login with username {string}")
+    public void iLoginWithUsername(String userName) {
+        String user = Environment.getInstance().getValue(String.format("$['users']['%s']['user']", userName));
+        String password = Environment.getInstance().getValue(String.format("$['users']['%s']['password']", userName));
+        this.header = this.login.login(user, password);
+    }
     @When("I login with username {string} and password {string}")
     public void iLoginWithUsernameAndPassword(String userName, String password) {
         header = login.login(userName, password);

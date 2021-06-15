@@ -3,7 +3,8 @@ Feature: Login
   @smoke @positive
   Scenario: Login with valid credentials
     Given I am on login page
-    When I login with username "joseccb1948@outlook.com" and password "Control*1234"
+#    When I login with username "joseccb1948@outlook.com" and password "Control*1234"
+    When I login with username "jose"
     Then I should see "joseccb1948@outlook.com" in profile menu
 
   @negative
